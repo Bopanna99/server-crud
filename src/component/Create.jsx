@@ -1,5 +1,9 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {toast} from 'react-toastify'
+
+const URL ="https://dummyjson.com"
 
 function Create(props){
     const [product,setProduct] = useState({
@@ -7,6 +11,8 @@ function Create(props){
         price:0,
         description:''
     })
+    const navigate = useNavigate()// used for Redirection path inside logics
+
     const readValue =(e)=>{
         const {name,value}=e.target;
         setProduct({...product, [name]:value })
@@ -15,6 +21,11 @@ function Create(props){
         e.preventDefault();
         try{
             console.log('new product =', product)
+            await axios.post(`${URL}/products/add`,product)
+            .then(res =>{
+                toast.success("New Product Added Succesfully")
+                navigate(`/`)
+            }).catch(err =>toast.error(err.message))
         }catch(err){
             toast.error(err.message)
         }

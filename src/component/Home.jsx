@@ -1,4 +1,5 @@
 import React from "react";
+import Categories from "./screens/Categories";
 
 function Home(props){
     return(
@@ -8,6 +9,7 @@ function Home(props){
                     <h3 className="display-3 text-success">Home</h3>
                 </div>
             </div>
+            <Categories/>
         </div>
     )
 }
