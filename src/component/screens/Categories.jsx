@@ -6,13 +6,13 @@ import { NavLink } from "react-router-dom";
 const URL ="https://dummyjson.com"
 
 function Categories(props){
-    const [categories,setategories] = useState([])
+    const [categories,setCategories] = useState([])
 
     const getCategories =async()=>{
         await axios.get(`${URL}/products/categories`)
         .then(res =>{
             console.log('categories =',res)
-            setategories(res.data)
+            setCategories(res.data)
         }).catch(err => toast.error(err.message))
     }
 
